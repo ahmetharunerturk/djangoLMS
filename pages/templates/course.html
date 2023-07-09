@@ -1,6 +1,8 @@
 {% extends '_base.html' %}
 {% load static %}
 
+from Tags import 
+
 {% block content %}
 <div class="all-title-box">
     <div class="container text-center">
@@ -18,13 +20,13 @@
                     </div>
                     <div class="post-content">
                         <div class="post-date">
-                            <span class="day">30</span>
-                            <span class="month">Nov</span>
+                            <span class="day">11</span>
+                            <span class="month">May</span>
                         </div>
                         <div class="meta-info-blog">
-                            <span><i class="fa fa-calendar"></i> <a href="#">May 11, 2015</a> </span>
-                            <span><i class="fa fa-tag"></i> <a href="#">News</a> </span>
-                            <span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
+                            <span><i class="fa fa-calendar"></i> <a href="#">May 11, 2023</a> </span>
+                            <span><i class="fa fa-tag"></i> <a href="#">Courses</a> </span>
+                            <span><i class="fa fa-comments"></i> <a href="#"></a></span>
                         </div>
                         <div class="blog-title">
                             <h2><a href="#" title="">{{course.name}}</a></h2>
@@ -58,13 +60,12 @@
             
                
             </div><!-- end col -->
-            <div class="col-lg-3 col-12 right-single">
+             <div class="col-lg-3 col-12 right-single">
                 <div class="widget-search">
                     <div class="site-search-area">
                         <form method="get" id="site-searchform" action="#">
                             <div>
-                                <input class="input-text form-control" name="search-k" id="search-k"
-                                    placeholder="Search keywords..." type="text">
+                                <input class="input-text form-control" name="search-k" id="search-k" placeholder="Search keywords..." type="text">
                                 <input id="searchsubmit" value="Search" type="submit">
                             </div>
                         </form>
@@ -73,30 +74,19 @@
                 <div class="widget-categories">
                     <h3 class="widget-title">Categories</h3>
                     <ul>
-                        <li><a href="#">Political Science</a></li>
-                        <li><a href="#">Business Leaders Guide</a></li>
-                        <li><a href="#">Become a Product Manage</a></li>
-                        <li><a href="#">Language Education</a></li>
-                        <li><a href="#">Micro Biology</a></li>
-                        <li><a href="#">Social Media Management</a></li>
+                        {% for category in categories %}
+                        <li><a href="{% url 'courses_by_category' category.slug %}">{{category.name}}</a></li>
+                        {% endfor %}
+                        
                     </ul>
                 </div>
                 <div class="widget-tags">
                     <h3 class="widget-title">Search Tags</h3>
                     <ul class="tags">
-                        <li><a href="#"><b>business</b></a></li>
-                        <li><a href="#"><b>jquery</b></a></li>
-                        <li><a href="#">corporate</a></li>
-                        <li><a href="#">portfolio</a></li>
-                        <li><a href="#">css3</a></li>
-                        <li><a href="#"><b>theme</b></a></li>
-                        <li><a href="#"><b>html5</b></a></li>
-                        <li><a href="#"><b>mysql</b></a></li>
-                        <li><a href="#">multipurpose</a></li>
-                        <li><a href="#">responsive</a></li>
-                        <li><a href="#">premium</a></li>
-                        <li><a href="#">javascript</a></li>
-                        <li><a href="#"><b>Best jQuery</b></a></li>
+                        {% for tag in tags %}
+                            <li><a href="{% url 'courses_by_tag' tag.slug %}">{{tag.name}}</a></li>
+                        {% endfor %}
+                        
                     </ul>
                 </div>
             </div>
