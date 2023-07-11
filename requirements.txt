@@ -5,5 +5,6 @@ django-environ==0.9.0
 gunicorn==20.1.0
 psycopg2-binary==2.9.5
 sqlparse ==0.4.3
-sqlite3==3.8.3
+pysqlite3==0.5.1
+pysqlite3-binary==0.5.0
 tzdata==2022.7
