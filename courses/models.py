@@ -1,5 +1,6 @@
 from django.db import models
 from teachers.models import Teacher
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=50, null=True)
@@ -21,6 +22,7 @@ class Course(models.Model):
     name = models.CharField(max_length=200, unique=True)
     category = models.ForeignKey(Category, null=True, on_delete=models.DO_NOTHING)
     tags = models.ManyToManyField(Tag, null=True, blank=True)
+    students = models.ManyToManyField(User, blank=True, related_name='courses_joined')
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to="courses/%Y/%m/%d/", default="media\courses\2023\06\19\default.png")
     date = models.DateTimeField(auto_now=True)
